@@ -1,5 +1,8 @@
 # Hospital Management System (Gastroenterology)
 
+[![Backend Tests](https://github.com/jayeshfw230025/Hospital-Mangment-system/actions/workflows/backend-tests.yml/badge.svg)](https://github.com/jayeshfw230025/Hospital-Mangment-system/actions/workflows/backend-tests.yml)
+[![Frontend CI](https://github.com/jayeshfw230025/Hospital-Mangment-system/actions/workflows/frontend-ci.yml/badge.svg)](https://github.com/jayeshfw230025/Hospital-Mangment-system/actions/workflows/frontend-ci.yml)
+
 Full-stack HMS for a gastroenterology practice: Spring Boot 3.3 backend covering
 patient registration, OPD/IPD clinical workflows, investigations, e-prescription,
 clinical decision support, admissions/discharge, analytics, auth/RBAC, and
