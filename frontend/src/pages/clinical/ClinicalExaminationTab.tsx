@@ -121,9 +121,9 @@ function splitCamel(key: string): string {
   return withSpaces.charAt(0).toUpperCase() + withSpaces.slice(1)
 }
 
-function summarize(dto: Record<string, unknown> | null | undefined): string[] {
+function summarize(dto: object | null | undefined): string[] {
   if (!dto) return []
-  return Object.entries(dto)
+  return Object.entries(dto as Record<string, unknown>)
     .filter(([, v]) => v !== null && v !== undefined && v !== '')
     .map(([k, v]) => `${splitCamel(k)}: ${typeof v === 'boolean' ? (v ? 'Yes' : 'No') : String(v)}`)
 }
