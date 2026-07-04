@@ -1,0 +1,62 @@
+spring:
+  application:
+    name: hospital-management-system
+
+  datasource:
+    url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/${DB_NAME:hms_db}?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+    username: ${DB_USER:hms_user}
+    password: ${DB_PASSWORD:hms_password}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+        jdbc:
+          time_zone: UTC
+
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+    locations: classpath:db/migration
+
+server:
+  port: ${SERVER_PORT:8080}
+
+hms:
+  crypto:
+    secret-key: ${HMS_CRYPTO_KEY:0123456789abcdef0123456789abcdef}
+  jwt:
+    secret-key: ${HMS_JWT_SECRET:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcd}
+    access-token-ttl-seconds: ${HMS_JWT_ACCESS_TTL:1800}
+    refresh-token-ttl-seconds: ${HMS_JWT_REFRESH_TTL:604800}
+  patient:
+    upid-prefix: UPID
+  investigation:
+    report-storage-path: ${HMS_REPORT_STORAGE_PATH:./data/investigation-reports}
+  prescription:
+    pdf-storage-path: ${HMS_PRESCRIPTION_PDF_PATH:./data/prescription-pdfs}
+  admission:
+    consent-storage-path: ${HMS_CONSENT_STORAGE_PATH:./data/admission-consents}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: when-authorized
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+  api-docs:
+    path: /v3/api-docs
+
+logging:
+  level:
+    com.hms: INFO
